@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday Niharika! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            background: #ffe4f2;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: #d63384;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            color: #ff1493;
+            margin-top: 50px;
+        }
+
+        #gift-box {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        #cake, #birthday-message, #lana, #jensen, #final-message {
+            display: none;
+            margin: 20px auto;
+        }
+
+        #cake {
+            width: 300px;
+        }
+
+        #birthday-message {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff007f;
+            font-family: 'Pacifico', cursive;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #lana, #jensen, #final-message {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        img {
+            display: block;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+
+        audio {
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Click the gift box to open your surprise! 🎁</h1>
+    <img id="gift-box" src="images/gift-box.png" alt="Gift Box">
+
+    <img id="cake" src="images/red-velvet-cake.png" alt="Birthday Cake">
+    <p id="birthday-message">🎉 Happy Birthday Niharika! 🎉</p>
+
+    <div id="lana">
+        <h2>💖 Lana Del Rey 💖</h2>
+        <img src="images/lana.png" alt="Lana Del Rey" width="250">
+        <p>Your queen, Lana, for you! 😍</p>
+        <audio id="lana-audio" controls>
+            <source src="audio/lana-voice.mp3" type="audio/mpeg">
+        </audio>
+        <br>
+        <audio id="niharika-audio" controls>
+            <source src="audio/niharika-lana.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="jensen">
+        <h2>🔥 Jensen Ackles 🔥</h2>
+        <img src="images/jensen.png" alt="Jensen Ackles" width="250">
+        <p>Your love, Jensen Ackles! 😍</p>
+        <audio controls>
+            <source src="audio/jensen-voice.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="final-message">
+        <h2>💌 A Special Message From Me 💌</h2>
+        <audio controls>
+            <source src="audio/my-final-voice.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        document.getElementById("gift-box").addEventListener("click", function() {
+            this.style.display = "none"; // Hide the gift box
+            document.getElementById("cake").style.display = "block"; // Show cake
+            
+            setTimeout(function() {
+                document.getElementById("birthday-message").style.display = "block"; // Show birthday message
+                
+                let song = new Audio("audio/happy-birthday.mp3");
+                song.play();
+
+                // ⏳ Wait for the birthday song to finish (85 seconds) before moving to Lana
+                setTimeout(function() {
+                    document.getElementById("lana").style.display = "block";
+                    document.getElementById("lana-audio").play(); // Play Lana's voice
+
+                    // ⏳ Play Niharika yapping about Lana 2 seconds after Lana starts
+                    setTimeout(function() {
+                        document.getElementById("niharika-audio").play();
+                    }, 2000);
+
+                    // ⏳ Move to Jensen after Lana and Niharika are done (~15 seconds)
+                    setTimeout(function() {
+                        document.getElementById("jensen").style.display = "block";
+
+                        // ⏳ Show Final Message after Jensen (~10 seconds)
+                        setTimeout(function() {
+                            document.getElementById("final-message").style.display = "block";
+                        }, 10000);
+
+                    }, 15000);
+                    
+                }, 85000); // Wait for 85 seconds (1 min 25 sec)
+                
+            }, 2000); // Wait 2 sec after showing cake
+        });
+    </script>
+
+</body>
+</html>
